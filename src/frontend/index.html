@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <head>
+        <script language="javascript" type="text/javascript">
+            const config = async () => {
+                const response = await fetch('http://localhost:3000/configPendulum', {
+                method: 'POST',
+                body: JSON.stringify({
+                    angularOffset: 10,
+                    mass: 10,
+                    stringLength: 10,
+                    coordinates: [1,2]
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                });
+                const myJson = await response.json();
+            }
+            const getCoordinate = async () => {
+                const response = await fetch('http://localhost:3000/getPendulumCoordinates');
+                const myJson = await response.json();
+                console.log(myJson);
+            }
+        </script>
+    </head>
+    <body>
+        <p>hello world</p>
+        <button onclick="config()">config</button>
+        <button onclick="getCoordinate()">getCoordinate</button>
+    </body>
+</html>
