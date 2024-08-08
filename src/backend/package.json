@@ -5,28 +5,33 @@
     "main": "index.ts",
     "type": "module",
     "scripts": {
-      "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts"
+        "server1": "SET PORT=3000 && node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts",
+        "server2": "SET PORT=3001 && node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts",
+        "server3": "SET PORT=3002 && node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts",
+        "server4": "SET PORT=3003 && node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts",
+        "server5": "SET PORT=3004 && node --no-warnings=ExperimentalWarning --loader ts-node/esm index.ts",
+        "start": "concurrently 'npm:server1' 'npm:server2' 'npm:server3' 'npm:server4' 'npm:server5'"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/RobRuff/simple-pendulum.git"
+        "type": "git",
+        "url": "git+https://github.com/RobRuff/simple-pendulum.git"
     },
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/RobRuff/simple-pendulum/issues"
+        "url": "https://github.com/RobRuff/simple-pendulum/issues"
     },
     "homepage": "https://github.com/RobRuff/simple-pendulum#readme",
     "dependencies": {
-      "cors": "^2.8.5",
-      "express": "^4.19.2"
+        "cors": "^2.8.5",
+        "express": "^4.19.2"
     },
     "devDependencies": {
-      "@types/cors": "^2.8.17",
-      "@types/express": "^4.17.21",
-      "nodemon": "^3.1.4",
-      "ts-loader": "^9.5.1",
-      "ts-node": "^10.9.2",
-      "typescript": "^5.5.4"
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "concurrently": "^8.2.2",
+        "nodemon": "^3.1.4",
+        "ts-loader": "^9.5.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4"
     }
-  }
-  
+}

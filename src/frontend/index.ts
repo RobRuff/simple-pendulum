@@ -3,6 +3,7 @@ import "./styles.css";
 
 let isPaused = false;
 const pendulums: Array<Pendulum> = [new Pendulum(1, 0, 0, 0)];
+const pendulumsPorts: number[] = [3000, 3001, 3002, 3003, 3004];
 
 const setPendulumConfig = async (index: number) => {
   const angularOffset =  Number((document.getElementById(`angular-offset-${index}`) as HTMLInputElement)?.value) ?? 0;
@@ -12,7 +13,7 @@ const setPendulumConfig = async (index: number) => {
   pendulums[index - 1].mass = mass;
   pendulums[index - 1].stringLength = stringLength;
 
-  const response = await fetch('http://localhost:3000/configPendulum', {
+  const response = await fetch(`http://localhost:${pendulumsPorts[index - 1]}/configPendulum`, {
     method: 'POST',
     body: JSON.stringify({
         angularOffset,
@@ -41,11 +42,19 @@ const wait = function (ms = 1000) {
   });
 };
 
-const getAngle = async () => {
-  const response = await fetch('http://localhost:3000/getPendulumCoordinates');
+const pendulumAngle = async (index: number) => {
+  const response = await fetch(`http://localhost:${pendulumsPorts[index]}/getPendulumCoordinates`);
   const result = await response.json();
+  return result.angle;
+};
+
+const updatePendulums = async () => {
+  const updatedAngles = await Promise.all(pendulums.map(async (_pendulum, index) => ({index, angle: await pendulumAngle(index)})));
   pendulums[0].clearCanvas();
-  pendulums.forEach((pendulum) => pendulum.draw(result.angle));
+  for (let i = 0; i < updatedAngles.length; i++) {
+    const current = updatedAngles[i];
+    pendulums[current.index].draw(current.angle);
+  }
 };
 
 const startSimulation = async () => {
@@ -61,12 +70,12 @@ const startSimulation = async () => {
       index++;
     } 
   }
-  await getAngle();
+  await updatePendulums();
   let executions = 0;
-  while (executions < 100 && !isPaused) {
+  while (executions < 1000 && !isPaused) {
     executions++;
     await wait(50);
-    await getAngle();
+    await updatePendulums();
   }
 };
 
