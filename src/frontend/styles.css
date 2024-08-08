@@ -1,0 +1,32 @@
+.main-body {
+    display: flex;
+}
+
+#canvas {
+    border: 1px solid black;
+}
+
+.config-panel {
+    background-color: lightgray;
+    width: 100%;
+    padding: 18px;
+}
+
+.pendulum-config {
+    border: 1px solid gray;
+    padding: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+
+    button {
+        margin-right: 12px;
+    }
+}

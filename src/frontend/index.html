@@ -1,31 +1,54 @@
-<!DOCTYPE html>
-    <head>
-        <script language="javascript" type="text/javascript">
-            const config = async () => {
-                const response = await fetch('http://localhost:3000/configPendulum', {
-                method: 'POST',
-                body: JSON.stringify({
-                    angularOffset: 10,
-                    mass: 10,
-                    stringLength: 10,
-                    coordinates: [1,2]
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-                });
-                const myJson = await response.json();
-            }
-            const getCoordinate = async () => {
-                const response = await fetch('http://localhost:3000/getPendulumCoordinates');
-                const myJson = await response.json();
-                console.log(myJson);
-            }
-        </script>
-    </head>
+<html>
     <body>
-        <p>hello world</p>
-        <button onclick="config()">config</button>
-        <button onclick="getCoordinate()">getCoordinate</button>
+        <div class="main-body">
+            <canvas id="canvas" width="800" height="600"></canvas>
+            <div class="config-panel">
+                <div id="pendulum-1" class="pendulum-config">
+                    <label for="pendulum-1-ang-offset">Angular Offset</label>
+                    <input name="pendulum-1-ang-offset" id="angular-offset-1" type="number" />
+                    <label for="pendulum-1-mass">Mass</label>
+                    <input name="pendulum-1-mass" id="mass-1" type="number" />
+                    <label for="pendulum-1-length">String Length</label>
+                    <input name="pendulum-1-length" id="string-length-1" type="number" />
+                </div>
+                <div id="pendulum-2" class="pendulum-config hidden">
+                    <label for="pendulum-2-ang-offset">Angular Offset</label>
+                    <input name="pendulum-2-ang-offset" id="angular-offset-2" type="number" />
+                    <label for="pendulum-2-mass">Mass</label>
+                    <input name="pendulum-2-mass" id="mass-2" type="number" />
+                    <label for="pendulum-2-length">String Length</label>
+                    <input name="pendulum-2-length" id="string-length-2" type="number" />
+                </div>
+                <div id="pendulum-3" class="pendulum-config hidden">
+                    <label for="pendulum-3-ang-offset">Angular Offset</label>
+                    <input name="pendulum-3-ang-offset" id="angular-offset-3" type="number" />
+                    <label for="pendulum-3-mass">Mass</label>
+                    <input name="pendulum-3-mass" id="mass-3" type="number" />
+                    <label for="pendulum-3-length">String Length</label>
+                    <input name="pendulum-3-length" id="string-length-3" type="number" />
+                </div>
+                <div id="pendulum-4" class="pendulum-config hidden">
+                    <label for="pendulum-4-ang-offset">Angular Offset</label>
+                    <input name="pendulum-4-ang-offset" id="angular-offset-4" type="number" />
+                    <label for="pendulum-4-mass">Mass</label>
+                    <input name="pendulum-4-mass" id="mass-4" type="number" />
+                    <label for="pendulum-4-length">String Length</label>
+                    <input name="pendulum-4-length" id="string-length-4" type="number" />
+                </div>
+                <div id="pendulum-5" class="pendulum-config hidden">
+                    <label for="pendulum-5-ang-offset">Angular Offset</label>
+                    <input name="pendulum-5-ang-offset" id="angular-offset-5" type="number" />
+                    <label for="pendulum-5-mass">Mass</label>
+                    <input name="pendulum-5-mass" id="mass-5" type="number" />
+                    <label for="pendulum-5-length">String Length</label>
+                    <input name="pendulum-5-length" id="string-length-5" type="number" />
+                </div>
+                <div class="action-buttons">
+                    <button id="new-pendulum">Add New Pendulum</button>
+                    <button id="start-simulation">Start Simulation</button>
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>

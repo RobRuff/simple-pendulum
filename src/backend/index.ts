@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import { Pendulum } from "./pendulum";
+import { Pendulum } from "./pendulum.ts";
 
 const port = 3000;
 const app: Express = express();
@@ -16,12 +16,11 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/getPendulumCoordinates", (_req: Request, res: Response) => {
-  res.send(pendulum.getUpdatedCoordinates());
+  res.send({angle: pendulum.getUpdatedCoordinates()});
 });
 
 app.post("/configPendulum", (req: Request, res: Response) => {
-  console.log(req.body);
-  pendulum = pendulum ? pendulum : new Pendulum(req.body.angularOffset, req.body.mass, req.body.stringLength, req.body.coordinates);
+  pendulum = new Pendulum(req.body.angularOffset, req.body.mass, req.body.stringLength);
 });
 
 app.listen(port, () => {
