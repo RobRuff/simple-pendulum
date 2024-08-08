@@ -2,26 +2,22 @@ import { Pendulum } from './pendulum';
 import "./styles.css";
 
 let isPaused = false;
-const pendulums: Array<Pendulum> = [];
+const pendulums: Array<Pendulum> = [new Pendulum(1, 0, 0, 0)];
 
 const setPendulumConfig = async (index: number) => {
-  const pendulum = new Pendulum(
-    Number((document.getElementById(`angular-offset-${index}`) as HTMLInputElement)?.value) ?? 0, 
-    Number((document.getElementById(`mass-${index}`) as HTMLInputElement)?.value) ?? 0, 
-    Number((document.getElementById(`string-length-${index}`) as HTMLInputElement)?.value) ?? 0
-  );
-  if (pendulums.length < index) {
-    pendulums.push(pendulum);
-  } else {
-    pendulums[index-1] = pendulum;
-  }
-  
+  const angularOffset =  Number((document.getElementById(`angular-offset-${index}`) as HTMLInputElement)?.value) ?? 0;
+  const mass =  Number((document.getElementById(`mass-${index}`) as HTMLInputElement)?.value) ?? 0;
+  const stringLength =  Number((document.getElementById(`string-length-${index}`) as HTMLInputElement)?.value) ?? 0;
+  pendulums[index - 1].angularOffset = angularOffset;
+  pendulums[index - 1].mass = mass;
+  pendulums[index - 1].stringLength = stringLength;
+
   const response = await fetch('http://localhost:3000/configPendulum', {
     method: 'POST',
     body: JSON.stringify({
-        angularOffset: pendulum.angularOffset,
-        mass: pendulum.mass,
-        stringLength: pendulum.stringLength,
+        angularOffset,
+        mass,
+        stringLength,
     }),
     headers: {
         'Content-Type': 'application/json'
@@ -31,9 +27,11 @@ const setPendulumConfig = async (index: number) => {
 };
 
 const addNewPendulum = async () => {
-  const index = pendulums.length + 1;
-  if (index < 6) {
-    document.getElementById(`pendulum-${index + 1}`)?.classList.remove('hidden');
+  if (pendulums.length < 5) {
+    const newIndex = pendulums.length + 1;
+    const pendulum = new Pendulum(newIndex, 0, 0, 0);
+    pendulums.push(pendulum);
+    document.getElementById(`pendulum-${newIndex}`)?.classList.remove('hidden');
   }
 };
 
@@ -46,7 +44,8 @@ const wait = function (ms = 1000) {
 const getAngle = async () => {
   const response = await fetch('http://localhost:3000/getPendulumCoordinates');
   const result = await response.json();
-  pendulums[0].draw(result.angle);
+  pendulums[0].clearCanvas();
+  pendulums.forEach((pendulum) => pendulum.draw(result.angle));
 };
 
 const startSimulation = async () => {
