@@ -42,15 +42,15 @@ const wait = function (ms = 1000) {
   });
 };
 
-const pendulumAngle = async (index: number) => {
+const getPendulumAngle = async (index: number) => {
   const response = await fetch(`http://localhost:${pendulumsPorts[index]}/getPendulumCoordinates`);
   const result = await response.json();
   return result.angle;
 };
 
 const updatePendulums = async () => {
-  const updatedAngles = await Promise.all(pendulums.map(async (_pendulum, index) => ({index, angle: await pendulumAngle(index)})));
-  pendulums[0].clearCanvas();
+  const updatedAngles = await Promise.all(pendulums.map(async (_pendulum, index) => ({index, angle: await getPendulumAngle(index)})));
+  Pendulum.clearCanvas();
   for (let i = 0; i < updatedAngles.length; i++) {
     const current = updatedAngles[i];
     pendulums[current.index].draw(current.angle);
@@ -70,7 +70,6 @@ const startSimulation = async () => {
       index++;
     } 
   }
-  await updatePendulums();
   let executions = 0;
   while (executions < 1000 && !isPaused) {
     executions++;

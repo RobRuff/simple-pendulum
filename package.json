@@ -6,9 +6,17 @@
     "type": "git",
     "url": "git+https://github.com/RobRuff/simple-pendulum.git"
   },
+  "scripts": {
+    "start-frontend": "cd src/frontend && npm start",
+    "start-backend": "cd src/backend && npm start",
+    "start": "concurrently 'npm:start-frontend' 'npm:start-backend'"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RobRuff/simple-pendulum/issues"
   },
-  "homepage": "https://github.com/RobRuff/simple-pendulum#readme"
+  "homepage": "https://github.com/RobRuff/simple-pendulum#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }

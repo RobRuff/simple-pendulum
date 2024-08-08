@@ -1,7 +1,4 @@
-// Make singleton and hold reference in index.ts
 class Pendulum {
-    // These are currently public make them private after
-    
     // Configurable properties
     angularOffset: number;
     mass: number;

@@ -10,11 +10,11 @@
     background-color: lightgray;
     width: 100%;
     padding: 18px;
-}
 
-.pendulum-config {
-    border: 1px solid gray;
-    padding: 12px;
+    .pendulum-config {
+        border: 1px solid gray;
+        padding: 12px;
+    }
 }
 
 .hidden {

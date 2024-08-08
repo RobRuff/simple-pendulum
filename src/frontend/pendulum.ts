@@ -42,7 +42,7 @@ class Pendulum {
         const ctx = element.getContext('2d');
 
         if (!ctx) {
-        return;
+          return;
         }
         
         //String
@@ -56,13 +56,13 @@ class Pendulum {
         
         //Bottom Circle
         ctx.beginPath();
-        ctx.arc(0,this.stringLength + this._radius,this._radius,0,Math.PI);
+        ctx.arc(0, this.stringLength + this._radius, this._radius, 0, Math.PI);
         ctx.fillStyle = '#828386';
         ctx.fill();
         
         //Top Circle
         ctx.beginPath();
-        ctx.arc(0,this.stringLength + this._radius,this._radius,Math.PI, 0);
+        ctx.arc(0, this.stringLength + this._radius, this._radius, Math.PI, 0);
         ctx.fillStyle = '#939598';
         ctx.fill();
         
@@ -74,7 +74,7 @@ class Pendulum {
       
     draw = (angle: number) => {
         var element = document.getElementById('canvas') as HTMLCanvasElement;
-        var ctx = element!.getContext('2d')!;
+        var ctx = element.getContext('2d')!;
 
         const translationMap = [0.5, 0.25, 0.75, 0.125, 0.875];        
         ctx.setTransform(1,0,0,1,element.width*translationMap[this._index - 1],0);
@@ -83,7 +83,7 @@ class Pendulum {
         this.drawPendulumObject(element);
     }
 
-    clearCanvas = () => {
+    static clearCanvas = () => {
         var element = document.getElementById('canvas') as HTMLCanvasElement;
         var ctx = element!.getContext('2d')!;
 
