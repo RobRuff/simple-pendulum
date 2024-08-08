@@ -21,6 +21,7 @@ app.get("/getPendulumCoordinates", (_req: Request, res: Response) => {
 
 app.post("/configPendulum", (req: Request, res: Response) => {
   pendulum = new Pendulum(req.body.angularOffset, req.body.mass, req.body.stringLength);
+  res.status(200).send();
 });
 
 app.listen(port, () => {
