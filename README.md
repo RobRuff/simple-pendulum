@@ -12,6 +12,8 @@ This monolith project is composed of two executable sub-projects:
 - Backend
     - Built in Node.js using Express
 
+![Simple Pendulum Demo](./simplePendulumDemo.gif)
+
 
 ## Getting Started
 

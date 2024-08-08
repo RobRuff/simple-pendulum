@@ -40,6 +40,28 @@ class Pendulum {
 
     drawPendulumObject = (element: HTMLCanvasElement) => {
         const ctx = element.getContext('2d');
+        const colorPalette = [
+            {
+                bottom:'#828386',
+                top: '#939598'
+            },
+            {
+                bottom:'#0082c8',
+                top: '#008cb3'
+            },
+            {
+                bottom:'#006745',
+                top: '#007f7c'
+            },
+            {
+                bottom:'#cb1c2b',
+                top: '#d61061'
+            },
+            {
+                bottom:'#6887ca',
+                top: '#5897d1'
+            }
+        ]
 
         if (!ctx) {
           return;
@@ -57,13 +79,13 @@ class Pendulum {
         //Bottom Circle
         ctx.beginPath();
         ctx.arc(0, this.stringLength + this._radius, this._radius, 0, Math.PI);
-        ctx.fillStyle = '#828386';
+        ctx.fillStyle = colorPalette[this._index - 1].bottom;
         ctx.fill();
         
         //Top Circle
         ctx.beginPath();
         ctx.arc(0, this.stringLength + this._radius, this._radius, Math.PI, 0);
-        ctx.fillStyle = '#939598';
+        ctx.fillStyle = colorPalette[this._index - 1].top;
         ctx.fill();
         
         //Smooth Shading

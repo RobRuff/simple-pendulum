@@ -16,7 +16,7 @@ class Pendulum {
         this.mass = mass;
         this.stringLength = stringLength;
 
-        this.damping = 0.95;
+        this.damping = 0.98 - 1/(this.mass * 10);
         this.angularAcceleration = 0;
         this.angularVelocity = 0;
         this.angle = angularOffset;
