@@ -43,7 +43,7 @@ const wait = function (ms = 1000) {
 };
 
 const getPendulumAngle = async (index: number) => {
-  const response = await fetch(`http://localhost:${pendulumsPorts[index]}/getPendulumCoordinates`);
+  const response = await fetch(`http://localhost:${pendulumsPorts[index]}/getPendulumAngle`);
   const result = await response.json();
   return result.angle;
 };

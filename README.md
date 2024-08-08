@@ -33,3 +33,22 @@ This monolith project is composed of two executable sub-projects:
    ```sh
    npm start
    ```
+
+## API Documentation
+
+### POST /configPendulum
+| Request Field    | Field Type |
+| --------         | -------    |
+| angular offset   | number     |
+| mass             | number     |
+| string length    | number     |
+
+| Response Field   | Field Type |
+| --------         | -------    |
+| status           | 200        |
+
+### GET /getPendulumAngle
+
+| Response Field   | Field Type |
+| --------         | -------    |
+| angle            | number     |

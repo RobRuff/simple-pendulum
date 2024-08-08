@@ -22,7 +22,7 @@ class Pendulum {
         this.angle = angularOffset;
     }
 
-    getUpdatedCoordinates = () => {
+    getUpdatedAngle = () => {
         this.angularAcceleration = (-1 * this.mass / this.stringLength) * Math.sin(this.angle);
         this.angularVelocity = (this.angularVelocity + this.angularAcceleration) * this.damping;
         this.angle += this.angularVelocity;  

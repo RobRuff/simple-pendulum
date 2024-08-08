@@ -5,7 +5,6 @@ import { Pendulum } from "./pendulum.ts";
 const port = process.env.PORT || 3000;
 const app: Express = express();
 
-// Configure for only specific host
 app.use(cors());
 app.use(express.json());
 
@@ -15,8 +14,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-app.get("/getPendulumCoordinates", (_req: Request, res: Response) => {
-  res.send({angle: pendulum.getUpdatedCoordinates()});
+app.get("/getPendulumAngle", (_req: Request, res: Response) => {
+  res.send({angle: pendulum.getUpdatedAngle()});
 });
 
 app.post("/configPendulum", (req: Request, res: Response) => {
